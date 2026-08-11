@@ -1,0 +1,2218 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pricing & Plans · The Artistic Unity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           THE ARTISTIC UNITY — COLOR PALETTE & FONTS
+           
+           Primary:    #ff6b00 (Warm Orange)
+           Secondary:  #ff1493 (Hot Pink)
+           Tertiary:   #2563eb (Royal Blue)
+           Gradient:   #ff6b00 → #ff1493 → #2563eb
+           
+           Headings:   'Playfair Display', serif (BOLD)
+           Body:       'Inter', system-ui, sans-serif
+           ============================================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #ffffff;
+            color: #0b1a2e;
+            line-height: 1.5;
+            overflow-x: hidden;
+            padding: 40px 24px 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ----- HEADINGS — Playfair Display (BOLD) ----- */
+        h1, h2, h3, h4, h5, .hero h1, .section-title,
+        .faq-q, .serif, .serif-heading,
+        .story-card .card-title,
+        .step-card .step-title,
+        .vibe-card .vibe-name,
+        .vibe-card .vibe-price,
+        .hero-summary,
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b00, #ff1493, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================================
+           HERO / HEADER
+           ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 40px 30px 48px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b00, #ff1493, #2563eb);
+        }
+
+        .hero .formula {
+            font-size: 2.4rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+            color: #0b1a2e;
+        }
+
+        .hero .formula span {
+            background: linear-gradient(135deg, #ff6b00, #ff1493, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .sub-formula {
+            font-size: 0.8rem;
+            color: #ff6b00;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-tagline {
+            display: flex;
+            justify-content: center;
+            gap: 8px 24px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #0b1a2e;
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-tagline span {
+            position: relative;
+        }
+
+        .hero-tagline span:not(:last-child)::after {
+            content: '·';
+            color: #ff6b00;
+            margin-left: 12px;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           HERO CARDS - HORIZONTAL SCROLL (STORY-DRIVEN)
+           ============================================================ */
+        .hero-scroll-container {
+            position: relative;
+            margin: 0 0 16px;
+        }
+
+        .hero-scroll-container .hero-scroll-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 8px 4px 16px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 0;
+        }
+
+        .hero-scroll-container .hero-scroll-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hero-scroll-container .scroll-fade {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, #ffffff);
+            pointer-events: none;
+            display: none;
+            border-radius: 0 14px 14px 0;
+        }
+
+        .hero-scroll-container .scroll-fade.visible {
+            display: block;
+        }
+
+        .hero-scroll-container .scroll-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #4a5a6e;
+            margin-top: 2px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-scroll-container .scroll-hint.visible {
+            opacity: 1;
+            display: block;
+        }
+
+        .hero-scroll-container .scroll-hint i {
+            color: #ff6b00;
+            margin-right: 4px;
+        }
+
+        .hero-scroll-container .scroll-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .hero-scroll-container .scroll-dots.visible {
+            display: flex;
+        }
+
+        .hero-scroll-container .scroll-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.08);
+            transition: 0.4s;
+            flex-shrink: 0;
+        }
+
+        .hero-scroll-container .scroll-dot.active {
+            background: #ff6b00;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* ===== STORY CARDS ===== */
+        .story-card {
+            background: #f3f9f3;
+            border-radius: 16px;
+            padding: 22px 18px 20px;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            min-width: 260px;
+            max-width: 300px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 14px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .story-card:last-child {
+            margin-right: 0;
+        }
+
+        .story-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.04);
+            border-color: #f9f6f4;
+        }
+
+        .story-card .card-question {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .story-card .card-icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .story-card .card-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #0b1a2e;
+            margin-bottom: 4px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .story-card .card-problem {
+            font-size: 0.85rem;
+            color: #4a5a6e;
+            line-height: 1.6;
+            padding: 0 2px;
+            margin-bottom: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .story-card .card-problem .highlight-problem {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .story-card .card-arrow {
+            color: #ff6b00;
+            font-size: 0.8rem;
+            display: block;
+            margin: 2px 0;
+        }
+
+        .story-card .card-solution {
+            font-size: 0.85rem;
+            color: #0b1a2e;
+            line-height: 1.6;
+            background: rgba(255, 107, 0, 0.04);
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-top: 4px;
+            border: 1px solid rgba(255, 107, 0, 0.06);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .story-card .card-solution .highlight-solution {
+            font-weight: 700;
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Revenue Card - Special */
+        .story-card.revenue {
+            background: rgba(255, 107, 0, 0.02);
+            border-color: rgba(255, 107, 0, 0.08);
+            text-align: center;
+        }
+
+        .story-card.revenue .card-title {
+            color: #ff6b00;
+        }
+
+        .story-card.revenue .card-solution {
+            background: #ffffff;
+            border-color: rgba(255, 107, 0, 0.08);
+            text-align: center;
+        }
+
+        .story-card.revenue .card-solution strong {
+            color: #ff6b00;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================================
+           HERO SUMMARY
+           ============================================================ */
+        .hero-summary {
+            font-size: 1rem;
+            color: #0b1a2e;
+            font-weight: 700;
+            margin: 6px 0 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: center;
+            padding: 16px 20px;
+            background: rgba(255, 107, 0, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 107, 0, 0.04);
+        }
+
+        .hero-summary .gold {
+            color: #ff6b00;
+        }
+
+        .hero-summary .highlight-gold {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        .hero .free-note {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: #0b1a2e;
+            background: rgba(255, 107, 0, 0.04);
+            display: inline-block;
+            padding: 10px 32px;
+            border-radius: 40px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 107, 0, 0.06);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero .free-note strong {
+            color: #ff6b00;
+        }
+
+        /* ============================================================
+           SECTION TITLES
+           ============================================================ */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            color: #0b1a2e;
+            margin-bottom: 6px;
+        }
+
+        .section-title .gold {
+            color: #ff6b00;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #4a5a6e;
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ============================================================
+           FAQ SECTION — ROUNDED BOXES
+           ============================================================ */
+        .faq-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        /* Each FAQ item is a rounded box */
+        .faq-item {
+            background: #e9e7f2;
+            border-radius: 20px;
+            padding: 28px 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: 0.4s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 107, 0, 0.06);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .faq-q {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #0b1a2e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .faq-q .faq-icon {
+            font-size: 1.4rem;
+            width: 36px;
+            text-align: center;
+        }
+
+        .faq-note {
+            font-size: 0.85rem;
+            color: #4a5a6e;
+            margin-top: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .faq-note i {
+            color: #ff6b00;
+        }
+
+        /* ===== FAQ: What Do I Pay For ===== */
+        .pay-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 10px 0 8px;
+        }
+
+        .pay-item {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: 0.4s;
+        }
+
+        .pay-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .pay-item .pay-icon {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .pay-item .pay-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4a5a6e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pay-item .pay-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0b1a2e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pay-item .pay-price.free {
+            color: #dc2626;
+        }
+
+        .pay-item .pay-price.pay {
+            color: #ff6b00;
+        }
+
+        /* ===== FAQ: How Much Money ===== */
+        .money-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 10px 0 8px;
+        }
+
+        .money-item {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px 14px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: 0.4s;
+        }
+
+        .money-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .money-item .money-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .money-item .money-title {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #0b1a2e;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .money-item .money-desc {
+            font-size: 0.8rem;
+            color: #4a5a6e;
+            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .money-item .money-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #ff6b00;
+            background: rgba(255, 107, 0, 0.04);
+            padding: 2px 14px;
+            border-radius: 40px;
+            margin-top: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ============================================================
+           HORIZONTAL SCROLL CONTAINER (Unified)
+           ============================================================ */
+        .scroll-container {
+            position: relative;
+            margin: 10px 0 8px;
+        }
+
+        .scroll-container .scroll-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 8px 4px 16px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 0;
+        }
+
+        .scroll-container .scroll-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-container .scroll-fade {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, #ffffff);
+            pointer-events: none;
+            display: none;
+            border-radius: 0 14px 14px 0;
+        }
+
+        .scroll-container .scroll-fade.visible {
+            display: block;
+        }
+
+        .scroll-container .scroll-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #4a5a6e;
+            margin-top: 2px;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .scroll-container .scroll-hint.visible {
+            opacity: 1;
+            display: block;
+        }
+
+        .scroll-container .scroll-hint i {
+            color: #ff6b00;
+            margin-right: 4px;
+        }
+
+        .scroll-container .scroll-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .scroll-container .scroll-dots.visible {
+            display: flex;
+        }
+
+        .scroll-container .scroll-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.08);
+            transition: 0.4s;
+            flex-shrink: 0;
+        }
+
+        .scroll-container .scroll-dot.active {
+            background: #ff6b00;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* ===== STEP CARDS ===== */
+        .step-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 18px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            height: 100%;
+            min-width: 280px;
+            max-width: 320px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 16px;
+            transition: 0.4s;
+        }
+
+        .step-card:last-child {
+            margin-right: 0;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .step-card .step-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ff6b00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-card .step-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0b1a2e;
+            margin: 2px 0 4px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .step-card .step-icon {
+            font-size: 2rem;
+            display: block;
+            margin: 4px 0;
+        }
+
+        .step-card .step-desc {
+            font-size: 0.85rem;
+            color: #4a5a6e;
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-card .step-arrow {
+            display: none;
+        }
+
+        /* ===== PROCESS CARDS ===== */
+        .process-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px 12px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            min-width: 140px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 10px;
+            transition: 0.4s;
+        }
+
+        .process-card:last-child {
+            margin-right: 0;
+        }
+
+        .process-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .process-card .p-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .process-card .p-title {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #0b1a2e;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .process-card .p-desc {
+            font-size: 0.7rem;
+            color: #4a5a6e;
+            line-height: 1.4;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .process-card .p-arrow {
+            display: none;
+        }
+
+        .process-card.launch {
+            background: rgba(255, 107, 0, 0.02);
+            border-color: rgba(255, 107, 0, 0.06);
+        }
+
+        .process-card.launch .p-title {
+            color: #ff6b00;
+        }
+
+        /* ===== GUARANTEE CARDS ===== */
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 10px 0 8px;
+        }
+
+        .guarantee-item {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px 14px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: 0.4s;
+        }
+
+        .guarantee-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .guarantee-item .g-icon {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .guarantee-item .g-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #0b1a2e;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .guarantee-item .g-desc {
+            font-size: 0.8rem;
+            color: #4a5a6e;
+            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ============================================================
+           VIBE SECTION
+           ============================================================ */
+        .vibe-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .vibe-section .scroll-wrapper {
+            padding: 8px 4px 16px;
+        }
+
+        .vibe-section .scroll-fade {
+            background: linear-gradient(to right, transparent, #ffffff);
+        }
+
+        .vibe-select-text {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #4a5a6e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .vibe-select-text i {
+            color: #ff6b00;
+        }
+
+        /* ===== VIBE CARDS ===== */
+        .vibe-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 24px 24px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            min-width: 280px;
+            max-width: 320px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            margin-right: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .vibe-card:last-child {
+            margin-right: 0;
+        }
+
+        .vibe-card:hover {
+            border-color: #ff6b00;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.04);
+        }
+
+        .vibe-card.selected {
+            border-color: #ff6b00;
+            background: rgba(255, 107, 0, 0.02);
+            box-shadow: 0 8px 40px rgba(255, 107, 0, 0.06);
+        }
+
+        .vibe-card .vibe-icon {
+            font-size: 2.6rem;
+            margin-bottom: 4px;
+        }
+
+        .vibe-card .vibe-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b1a2e;
+        }
+
+        .vibe-card .vibe-tagline {
+            font-size: 0.8rem;
+            color: #ff6b00;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .vibe-card .vibe-desc {
+            font-size: 0.8rem;
+            color: #4a5a6e;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .vibe-card .vibe-desc span {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.02);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #0b1a2e;
+            margin: 2px 3px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .vibe-card .vibe-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0b1a2e;
+            margin: 8px 0 14px;
+        }
+
+        .vibe-card .vibe-price small {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #4a5a6e;
+        }
+
+        .vibe-card .btn-vibe {
+            background: transparent;
+            border: 1.5px solid #ff6b00;
+            color: #0b1a2e;
+            padding: 8px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.4s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .vibe-card .btn-vibe:hover {
+            background: #ff6b00;
+            color: #fff;
+        }
+
+        .vibe-card.selected .btn-vibe {
+            background: #ff6b00;
+            color: #fff;
+            border-color: #ff6b00;
+        }
+
+        /* ============================================================
+           COMMON FEATURES
+           ============================================================ */
+        .features-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px 24px;
+            margin-top: 8px;
+        }
+
+        .features-grid .feat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: #0b1a2e;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .features-grid .feat:last-child {
+            border-bottom: none;
+        }
+
+        .features-grid .feat i {
+            color: #4400ff;
+            font-size: 0.9rem;
+            width: 22px;
+        }
+
+        .features-grid .feat .free-tag {
+            font-size: 0.6rem;
+            color: #ff6b00;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255, 107, 0, 0.04);
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-left: auto;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ============================================================
+           CTA SECTION
+           ============================================================ */
+        .cta-section {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 44px 40px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b00, #ff1493, #2563eb);
+        }
+
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b1a2e;
+            margin-bottom: 4px;
+        }
+
+        .cta-section p {
+            color: #4a5a6e;
+            font-size: 0.95rem;
+            margin-bottom: 22px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #ff6b00, #ff1493, #2563eb);
+            color: #fff;
+            padding: 16px 52px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(255, 107, 0, 0.25);
+        }
+
+        .btn-primary i {
+            font-size: 1rem;
+        }
+
+        .cta-section .note {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: #4a5a6e;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-section .note i {
+            color: #ff6b00;
+        }
+
+        /* ============================================================
+           RESPONSIVE - MOBILE
+           ============================================================ */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px 40px;
+            }
+
+            .hero {
+                padding: 24px 16px 32px;
+            }
+
+            .hero .formula {
+                font-size: 1.6rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.85rem;
+                gap: 4px 16px;
+                margin-bottom: 14px;
+            }
+
+            .hero-tagline span:not(:last-child)::after {
+                margin-left: 8px;
+            }
+
+            .story-card {
+                min-width: 240px;
+                max-width: 260px;
+                padding: 18px 14px 16px;
+                margin-right: 10px;
+            }
+
+            .story-card .card-icon {
+                font-size: 1.5rem;
+            }
+            .story-card .card-title {
+                font-size: 0.9rem;
+            }
+            .story-card .card-problem {
+                font-size: 0.75rem;
+            }
+            .story-card .card-solution {
+                font-size: 0.75rem;
+                padding: 8px 10px;
+            }
+            .story-card .card-question {
+                font-size: 0.65rem;
+            }
+
+            .hero-summary {
+                font-size: 0.85rem;
+                padding: 12px 14px;
+            }
+
+            .hero .free-note {
+                font-size: 0.8rem;
+                padding: 8px 20px;
+            }
+
+            .faq-section {
+                padding: 24px 16px;
+            }
+
+            .faq-item {
+                padding: 20px 18px;
+                margin-bottom: 14px;
+            }
+
+            .faq-q {
+                font-size: 0.95rem;
+                gap: 8px;
+            }
+
+            .faq-q .faq-icon {
+                font-size: 1.1rem;
+                width: 28px;
+            }
+
+            .pay-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .pay-item {
+                padding: 10px 8px;
+            }
+
+            .pay-item .pay-icon {
+                font-size: 1.2rem;
+            }
+            .pay-item .pay-price {
+                font-size: 0.85rem;
+            }
+
+            .money-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .money-item {
+                padding: 12px 14px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+            }
+
+            .money-item .money-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+            .money-item .money-title {
+                font-size: 0.8rem;
+            }
+            .money-item .money-desc {
+                font-size: 0.75rem;
+            }
+            .money-item .money-tag {
+                font-size: 0.6rem;
+                padding: 1px 12px;
+                margin-top: 0;
+            }
+
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .guarantee-item {
+                padding: 12px 14px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+            }
+
+            .guarantee-item .g-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+            .guarantee-item .g-title {
+                font-size: 0.85rem;
+            }
+            .guarantee-item .g-desc {
+                font-size: 0.75rem;
+            }
+
+            .step-card {
+                min-width: 250px;
+                max-width: 270px;
+                padding: 16px 14px;
+                margin-right: 12px;
+            }
+
+            .step-card .step-title {
+                font-size: 0.95rem;
+            }
+            .step-card .step-desc {
+                font-size: 0.8rem;
+            }
+            .step-card .step-icon {
+                font-size: 1.8rem;
+            }
+
+            .process-card {
+                min-width: 130px;
+                padding: 12px 10px;
+                margin-right: 8px;
+            }
+
+            .process-card .p-icon {
+                font-size: 1.2rem;
+            }
+            .process-card .p-title {
+                font-size: 0.65rem;
+            }
+            .process-card .p-desc {
+                font-size: 0.6rem;
+            }
+
+            .vibe-section {
+                padding: 28px 16px;
+            }
+
+            .vibe-card {
+                min-width: 250px;
+                max-width: 270px;
+                padding: 22px 18px;
+                margin-right: 14px;
+            }
+
+            .vibe-card .vibe-name {
+                font-size: 1.1rem;
+            }
+            .vibe-card .vibe-icon {
+                font-size: 2.2rem;
+            }
+            .vibe-card .vibe-desc span {
+                font-size: 0.6rem;
+                padding: 2px 10px;
+            }
+            .vibe-card .vibe-price {
+                font-size: 1.1rem;
+            }
+            .vibe-card .btn-vibe {
+                padding: 8px 24px;
+                font-size: 0.75rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-section {
+                padding: 28px 20px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.3rem;
+            }
+
+            .btn-primary {
+                padding: 14px 32px;
+                font-size: 0.9rem;
+            }
+
+            .scroll-container .scroll-fade {
+                display: block;
+            }
+            .scroll-container .scroll-fade.visible {
+                display: block;
+            }
+            .scroll-container .scroll-hint {
+                display: block;
+            }
+            .scroll-container .scroll-hint.visible {
+                display: block;
+            }
+            .scroll-container .scroll-dots {
+                display: flex;
+            }
+            .scroll-container .scroll-dots.visible {
+                display: flex;
+            }
+
+            .hero-scroll-container .scroll-fade {
+                display: block;
+            }
+            .hero-scroll-container .scroll-fade.visible {
+                display: block;
+            }
+            .hero-scroll-container .scroll-hint {
+                display: block;
+            }
+            .hero-scroll-container .scroll-hint.visible {
+                display: block;
+            }
+            .hero-scroll-container .scroll-dots {
+                display: flex;
+            }
+            .hero-scroll-container .scroll-dots.visible {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero .formula {
+                font-size: 1.3rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.75rem;
+                gap: 2px 8px;
+            }
+
+            .story-card {
+                min-width: 210px;
+                max-width: 230px;
+                padding: 14px 10px 12px;
+                margin-right: 8px;
+            }
+
+            .story-card .card-icon {
+                font-size: 1.2rem;
+            }
+            .story-card .card-title {
+                font-size: 0.8rem;
+            }
+            .story-card .card-problem {
+                font-size: 0.65rem;
+            }
+            .story-card .card-solution {
+                font-size: 0.65rem;
+                padding: 6px 8px;
+            }
+            .story-card .card-question {
+                font-size: 0.55rem;
+            }
+
+            .hero-summary {
+                font-size: 0.75rem;
+                padding: 10px 12px;
+            }
+
+            .faq-item {
+                padding: 16px 14px;
+            }
+
+            .pay-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .pay-item {
+                padding: 8px 6px;
+            }
+
+            .pay-item .pay-icon {
+                font-size: 1rem;
+            }
+            .pay-item .pay-label {
+                font-size: 0.6rem;
+            }
+            .pay-item .pay-price {
+                font-size: 0.75rem;
+            }
+
+            .step-card {
+                min-width: 220px;
+                max-width: 240px;
+                padding: 14px 12px;
+            }
+
+            .step-card .step-title {
+                font-size: 0.85rem;
+            }
+            .step-card .step-desc {
+                font-size: 0.7rem;
+            }
+            .step-card .step-icon {
+                font-size: 1.4rem;
+            }
+
+            .process-card {
+                min-width: 110px;
+                padding: 10px 8px;
+            }
+
+            .vibe-card {
+                min-width: 210px;
+                max-width: 230px;
+                padding: 16px 14px;
+            }
+
+            .vibe-card .vibe-name {
+                font-size: 1rem;
+            }
+            .vibe-card .vibe-icon {
+                font-size: 1.8rem;
+            }
+            .vibe-card .vibe-price {
+                font-size: 1rem;
+            }
+            .vibe-card .btn-vibe {
+                padding: 6px 18px;
+                font-size: 0.7rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-primary {
+                padding: 12px 24px;
+                font-size: 0.8rem;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ============================================================
+           DESKTOP - All items visible in grid
+           ============================================================ */
+        @media (min-width: 769px) {
+            .hero-scroll-container .hero-scroll-wrapper {
+                overflow-x: visible;
+                padding: 0;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                scroll-snap-type: none;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+
+            .story-card {
+                min-width: auto;
+                max-width: none;
+                flex: 1;
+                margin-right: 0;
+                padding: 24px 20px 22px;
+            }
+
+            .story-card.revenue {
+                grid-column: 1 / -1;
+                max-width: 100%;
+                padding: 24px 20px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .story-card.revenue .card-icon {
+                font-size: 1.6rem;
+                margin-bottom: 0;
+            }
+            .story-card.revenue .card-title {
+                font-size: 1.1rem;
+                margin-bottom: 0;
+            }
+            .story-card.revenue .card-problem {
+                margin-bottom: 0;
+            }
+            .story-card.revenue .card-solution {
+                margin-top: 0;
+                padding: 8px 16px;
+            }
+            .story-card.revenue .card-arrow {
+                display: none;
+            }
+
+            .hero-scroll-container .scroll-fade {
+                display: none !important;
+            }
+            .hero-scroll-container .scroll-hint {
+                display: none !important;
+            }
+            .hero-scroll-container .scroll-dots {
+                display: none !important;
+            }
+
+            .scroll-container .scroll-fade {
+                display: none !important;
+            }
+            .scroll-container .scroll-hint {
+                display: none !important;
+            }
+            .scroll-container .scroll-dots {
+                display: none !important;
+            }
+
+            .scroll-container .scroll-wrapper {
+                overflow-x: visible;
+                padding: 0;
+                display: grid;
+                gap: 16px;
+                scroll-snap-type: none;
+            }
+
+            .scroll-container.steps .scroll-wrapper {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .step-card {
+                min-width: auto;
+                max-width: none;
+                margin-right: 0;
+                padding: 24px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-height: 200px;
+            }
+
+            .step-card .step-arrow {
+                display: block;
+                font-size: 1.2rem;
+                color: #ff6b00;
+                margin-top: 8px;
+            }
+
+            .scroll-container.process .scroll-wrapper {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+            }
+
+            .process-card {
+                min-width: auto;
+                margin-right: 0;
+                padding: 14px 10px;
+            }
+
+            .process-card .p-arrow {
+                display: block !important;
+                font-size: 0.8rem;
+                color: #ff6b00;
+                margin-top: 4px;
+            }
+
+            .process-card:last-child .p-arrow {
+                display: none !important;
+            }
+
+            .vibe-section .scroll-wrapper {
+                overflow-x: visible;
+                padding: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+                scroll-snap-type: none;
+            }
+
+            .vibe-card {
+                min-width: auto;
+                max-width: none;
+                margin-right: 0;
+                padding: 32px 28px 28px;
+            }
+
+            .money-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .money-item {
+                text-align: center;
+                display: block;
+            }
+
+            .money-item .money-icon {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            .guarantee-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .guarantee-item {
+                display: block;
+                text-align: center;
+            }
+
+            .guarantee-item .g-icon {
+                display: block;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ============================================================ -->
+        <!-- HERO / HEADER - STORY-DRIVEN                                 -->
+        <!-- ============================================================ -->
+        <section class="hero">
+            <div class="formula">🎨 + 💻 + 📢 = <span>💰</span></div>
+            <div class="sub-formula">Design · Development · Marketing</div>
+
+
+            <div class="hero-scroll-container">
+                <div class="hero-scroll-wrapper" id="heroWrapper">
+
+                     <!-- Card 1: Your Home -->
+                    <div class="story-card">
+                        <span class="card-question">The Safehouse</span>
+                        <span class="card-icon">💻</span>
+                        <span class="card-title">Your Digital Shop</span>
+                        <span class="card-problem">
+                            is Designed beautifully but<span class="highlight-problem"> lags and is full of errors</span>?
+                            where People get confused and <span class="highlight-problem">leave.</span>
+                        </span>
+                        <span class="card-arrow">→</span>
+                        <span class="card-solution">
+                            <span class="highlight-solution">A "WELL-CODED" Website is a necessity.</span>
+                        </span>
+                    </div>
+
+
+                    <!-- Card 2: Your Handshake -->
+                    <div class="story-card">
+                        <span class="card-question"> The Personality</span>
+                        <span class="card-icon">🤝</span>
+                        <span class="card-title">Your Digital Shop</span>
+                        <span class="card-problem">
+                           is well structured💻 but if it <span class="highlight-problem"> does not represent your Brand</span>?
+                            You would not please your<span class="highlight-problem"> IDEAL CUSTOMER</span>
+                        </span>
+                        <span class="card-arrow">→</span>
+                        <span class="card-solution">
+                            <span class="highlight-solution">"GRAPHIC DESIGN" makes Your Vision shine.</span>
+                        </span>
+                    </div>
+
+
+                    <!-- Card 3: Your Voice -->
+                    <div class="story-card">
+                        <span class="card-question"> The Boost</span>
+                        <span class="card-icon">🎤</span>
+                        <span class="card-title">Your Digital Shop </span>
+                        <span class="card-problem">
+                           is beautifully designed🎨 and coded💻 but your IDEAL CUSTOMER doesn't know you exist! <span class="highlight-problem"> </span>.
+                            You're <span class="highlight-problem">invisible Without Digital Marketing</span>.
+                        </span>
+                        <span class="card-arrow">→</span>
+                        <span class="card-solution">
+                            <span class="highlight-solution">DIGITAL MARKETING is the answer.</span>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="scroll-fade visible" id="heroFade"></div>
+                <div class="scroll-dots visible" id="heroDots"></div>
+                <div class="scroll-hint visible" id="heroHint">
+                    <i class="fas fa-hand-pointer"></i> Swipe to see the full story
+                </div>
+            </div>
+
+            <!-- Hero Summary -->
+            <div class="hero-summary">
+                ✨ <span class="gold">What if ALL THREE worked together?</span><br />
+                Your Home + Your Personlaity + Your Voice — all in harmony.<br />
+                We build <span class="highlight-gold">ALL THREE</span>. Together. As one.<br />
+                🎯 That's how <span class="highlight-gold">REVENUE</span> happens.
+            </div>
+
+            <div class="free-note">
+                💡 The best part? <strong>Design + Marketing are FREE.</strong><br />
+                You only pay for the code.
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- FAQ SECTION — ROUNDED BOXES                                 -->
+        <!-- ============================================================ -->
+        <section class="faq-section">
+
+            <h2 class="section-title">❓ Frequently Asked <span class="gold">Questions</span></h2>
+            <p class="section-sub">Honest answers. No fluff. Just truth.</p>
+
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-q">
+                    <span class="faq-icon">💰</span>
+                    What do I actually pay for?
+                </div>
+
+                <div class="pay-grid">
+                    <div class="pay-item">
+                        <span class="pay-icon">🎨</span>
+                        <span class="pay-label">Design</span>
+                        <span class="pay-price free">FREE</span>
+                    </div>
+                    <div class="pay-item">
+                        <span class="pay-icon">📣</span>
+                        <span class="pay-label">Marketing</span>
+                        <span class="pay-price free">FREE</span>
+                    </div>
+                    <div class="pay-item">
+                        <span class="pay-icon">💰</span>
+                        <span class="pay-label">Ads</span>
+                        <span class="pay-price free">FREE</span>
+                    </div>
+                    <div class="pay-item">
+                        <span class="pay-icon">💻</span>
+                        <span class="pay-label">Code</span>
+                        <span class="pay-price pay">PAY</span>
+                    </div>
+                </div>
+
+                <p class="faq-note">
+                    <i class="fas fa-check-circle"></i> One-time payment. No hidden fees. No monthly charges.
+                </p>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-q">
+                    <span class="faq-icon">📈</span>
+                    How Long does it take to cover my investment?
+                </div>
+
+                <p style="font-weight: 600; color: #0b1a2e; margin-bottom: 10px;">
+                    We ensure your investment is covered within 2 months.
+                </p>
+
+                <div class="money-grid">
+                    <div class="money-item">
+                        <span class="money-icon">📅</span>
+                        <span class="money-title">Month 1</span>
+                        <span class="money-desc">Find the Perfect strategy — testing, optimizing, finding what works</span>
+                        <span class="money-tag">⚡ Expenses On us</span>
+                    </div>
+                    <div class="money-item">
+                        <span class="money-icon">📅</span>
+                        <span class="money-title">Month 2</span>
+                        <span class="money-desc">Generate sales. Real revenue. Real results.</span>
+                        <span class="money-tag">⚡ Expenses On us</span>
+                    </div>
+                    <div class="money-item">
+                        <span class="money-icon">💵</span>
+                        <span class="money-title">Your Investment</span>
+                        <span class="money-desc">Covered by the revenue you earn</span>
+                        <span class="money-tag">✅ You keep the rest</span>
+                    </div>
+                </div>
+
+                <p class="faq-note">
+                    <i class="fas fa-gem"></i> All expenses — ads, campaigns, testing — on us until you win.
+                </p>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-q">
+                    <span class="faq-icon">🔧</span>
+                    How do you make sure I get that revenue?
+                </div>
+
+                <p style="font-weight: 600; color: #0b1a2e; margin-bottom: 10px;">
+                    We build your revenue engine — perfecting every step.
+                </p>
+
+                <div class="scroll-container steps">
+                    <div class="scroll-wrapper" id="stepsWrapper">
+                        <div class="step-card">
+                            <span class="step-number">Step 1</span>
+                            <span class="step-title">Design + Develop</span>
+                            <span class="step-icon">🎨 + 💻</span>
+                            <span class="step-desc">Strategic graphic design + web development combined → Your website — beautiful, functional, built to convert.</span>
+                            <span class="step-arrow">➜</span>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">Step 2</span>
+                            <span class="step-title">Add Marketing</span>
+                            <span class="step-icon">📢</span>
+                            <span class="step-desc">Digital marketing layered on top → Ads, SEO, social media — bringing customers to your door.</span>
+                            <span class="step-arrow">➜</span>
+                        </div>
+                        <div class="step-card">
+                            <span class="step-number">Step 3</span>
+                            <span class="step-title">Everything Works Together</span>
+                            <span class="step-icon">🎨 + 💻 + 📢</span>
+                            <span class="step-desc">Design + Website + Marketing — all in harmony → That's how revenue happens.</span>
+                            <span class="step-arrow">✨</span>
+                        </div>
+                    </div>
+                    <div class="scroll-fade visible" id="stepsFade"></div>
+                    <div class="scroll-dots visible" id="stepsDots"></div>
+                    <div class="scroll-hint visible" id="stepsHint">
+                        <i class="fas fa-hand-pointer"></i> Swipe to see the full process
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <div class="faq-q">
+                    <span class="faq-icon">🛡️</span>
+                    Do you guarantee revenue?
+                </div>
+
+                <div class="guarantee-grid">
+                    <div class="guarantee-item">
+                        <span class="g-icon">✅</span>
+                        <span class="g-title">95% Sure</span>
+                        <span class="g-desc">With perfect strategy execution and our cooperation.</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="g-icon">⚠️</span>
+                        <span class="g-title">5% Depends</span>
+                        <span class="g-desc">Market conditions, economy, politics — things nobody can control.</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="g-icon">🛡️</span>
+                        <span class="g-title">100% Guarantee</span>
+                        <span class="g-desc">You lose NOTHING. We cover all ad costs.</span>
+                    </div>
+                </div>
+
+                <p class="faq-note">
+                    <i class="fas fa-shield-alt"></i> Your risk = <strong>$0</strong>.
+                </p>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <div class="faq-q">
+                    <span class="faq-icon">🚀</span>
+                    How does the process go?
+                </div>
+
+                <div class="scroll-container process">
+                    <div class="scroll-wrapper" id="processWrapper">
+                        <div class="process-card">
+                            <span class="p-icon">📝</span>
+                            <span class="p-title">Study</span>
+                            <span class="p-desc">Your business, products, strengths, weaknesses</span>
+                            <span class="p-arrow">➜</span>
+                        </div>
+                        <div class="process-card">
+                            <span class="p-icon">🖌️</span>
+                            <span class="p-title">Mockup</span>
+                            <span class="p-desc">Create website mockup — edit until you are satisfied</span>
+                            <span class="p-arrow">➜</span>
+                        </div>
+                        <div class="process-card">
+                            <span class="p-icon">🔨</span>
+                            <span class="p-title">Build</span>
+                            <span class="p-desc">Build website — update you at every step</span>
+                            <span class="p-arrow">➜</span>
+                        </div>
+                        <div class="process-card">
+                            <span class="p-icon">📣</span>
+                            <span class="p-title">Market</span>
+                            <span class="p-desc">Create strategy — tailored to your audience</span>
+                            <span class="p-arrow">➜</span>
+                        </div>
+                        <div class="process-card launch">
+                            <span class="p-icon">🚀</span>
+                            <span class="p-title">Launch & Grow</span>
+                            <span class="p-desc">We take all risk. You take none.</span>
+                            <span class="p-arrow">✨</span>
+                        </div>
+                    </div>
+                    <div class="scroll-fade visible" id="processFade"></div>
+                    <div class="scroll-dots visible" id="processDots"></div>
+                    <div class="scroll-hint visible" id="processHint">
+                        <i class="fas fa-hand-pointer"></i> Swipe to see the full process
+                    </div>
+                </div>
+
+                <p class="faq-note" style="margin-top: 10px;">
+                    <i class="fas fa-handshake"></i> We take all risk. You take none.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- COMMON FEATURES                                              -->
+        <!-- ============================================================ -->
+        <section class="features-section">
+            <h2 class="section-title">✓ Everything You <span class="gold">Get</span></h2>
+            <p class="section-sub">Same powerful features. Two beautiful vibes.</p>
+
+            <div class="features-grid">
+                <div class="feat"><i class="fas fa-paint-brush"></i> Strategic Graphic Design <span class="free-tag">FREE</span></div>
+                <div class="feat"><i class="fas fa-bullhorn"></i> 1 Month Digital Marketing <span class="free-tag">FREE</span></div>
+                <div class="feat"><i class="fas fa-dollar-sign"></i> Ad Spend Covered <span class="free-tag">FREE</span></div>
+                <div class="feat"><i class="fas fa-mobile-alt"></i> Mobile/Desktop-Responsive Design</div>
+                <div class="feat"><i class="fas fa-search"></i> SEO-Optimized Structure</div>
+                <div class="feat"><i class="fas fa-rocket"></i> Fast Loading Speed</div>
+                <div class="feat"><i class="fas fa-shopping-cart"></i> Advanced Features (E-commerce, Bookings, Memberships, etc.)</div>
+                <div class="feat"><i class="fas fa-envelope"></i> Lead Capture Forms</div>
+                <div class="feat"><i class="fas fa-calendar-check"></i> Investment Covered in 2 Months</div>
+                <div class="feat"><i class="fas fa-infinity"></i> Full Customization &amp; Unlimited Revisions</div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- VIBE SELECTION                                              -->
+        <!-- ============================================================ -->
+        <section class="vibe-section">
+            <h2 class="section-title">🎨 Choose Your <span class="gold">Vibe</span></h2>
+            <p class="section-sub">Same powerful features. Two beautiful energies.</p>
+
+            <div class="scroll-container">
+                <div class="scroll-wrapper" id="vibeWrapper">
+                    <div class="vibe-card" data-vibe="minimalistic" data-price="$1,500 – $4,500" onclick="selectVibe(this)">
+                        <div class="vibe-icon">✨</div>
+                        <div class="vibe-name">Minimalistic</div>
+                        <div class="vibe-tagline">Calm · Clean · Airy</div>
+                        <div class="vibe-desc">
+                            <span>Soft, muted colors</span>
+                            <span>Clean typography</span>
+                            <span>Spacious layouts</span>
+                            <span>Understated elegance</span>
+                            <span>Quiet confidence</span>
+                        </div>
+                        <div class="vibe-price">$1,500 – $4,500 <small>one-time</small></div>
+                        <button class="btn-vibe">Choose Minimalistic</button>
+                    </div>
+
+                    <div class="vibe-card" data-vibe="fancy" data-price="$5,000 – $15,000+" onclick="selectVibe(this)">
+                        <div class="vibe-icon">🌟</div>
+                        <div class="vibe-name">Fancy</div>
+                        <div class="vibe-tagline">Bold · Luxurious · Premium</div>
+                        <div class="vibe-desc">
+                            <span>Rich, deep colors</span>
+                            <span>Statement typography</span>
+                            <span>Dramatic layouts</span>
+                            <span>Show-stopping presence</span>
+                            <span>Dazzling energy</span>
+                        </div>
+                        <div class="vibe-price">$5,000 – $15,000+ <small>one-time</small></div>
+                        <button class="btn-vibe">Choose Fancy</button>
+                    </div>
+                </div>
+                <div class="scroll-fade visible" id="vibeFade"></div>
+                <div class="scroll-dots visible" id="vibeDots"></div>
+                <div class="scroll-hint visible" id="vibeHint">
+                    <i class="fas fa-hand-pointer"></i> Swipe to see both options
+                </div>
+            </div>
+
+            <p class="vibe-select-text">
+                <i class="fas fa-arrow-right"></i> 
+            </p>
+        </section>
+        <!-- ============================================================ -->
+        <!-- CTA SECTION                                                 -->
+        <!-- ============================================================ -->
+        <section class="cta-section">
+            <h3>📝 Ready to see what's possible?</h3>
+            <p>Click below to request your sample website.<br />No obligation. Just inspiration.</p>
+
+            <!-- ★ CHANGE THE URL BELOW ★ -->
+            <a href="https://ashen-boop.github.io/Prototype-47/" class="btn-primary">
+                <i class="fas fa-paper-plane"></i> Go Back 
+            </a>
+
+            <p class="note">
+                <i class="fas fa-lock"></i> Your information is safe with us. No spam. No pressure.
+            </p>
+        </section>
+      
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT                                                   -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // VIBE SELECTION
+        // ============================================================
+        let selectedVibe = null;
+
+        function selectVibe(card) {
+            document.querySelectorAll('.vibe-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedVibe = card.dataset.vibe;
+        }
+
+        // ============================================================
+        // CTA BUTTON
+        // ============================================================
+        document.getElementById('ctaButton').addEventListener('click', function(e) {
+            if (!selectedVibe) {
+                e.preventDefault();
+                alert('Please select a vibe first (Minimalistic or Fancy) so we can send you the right sample.');
+                return;
+            }
+
+            localStorage.setItem('selectedVibe', selectedVibe);
+
+            const selectedCard = document.querySelector('.vibe-card.selected');
+            if (selectedCard) {
+                localStorage.setItem('selectedPrice', selectedCard.dataset.price);
+            }
+        });
+
+        // ============================================================
+        // UNIFIED HORIZONTAL SCROLL HELPER
+        // ============================================================
+        function setupHorizontalScroll(wrapperId, dotsId, hintId, fadeId) {
+            const wrapper = document.getElementById(wrapperId);
+            const dotsContainer = document.getElementById(dotsId);
+            const hint = document.getElementById(hintId);
+            const fade = document.getElementById(fadeId);
+
+            if (!wrapper) return;
+
+            let cardCount = wrapper.children.length;
+
+            if (dotsContainer && cardCount > 0) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < cardCount; i++) {
+                    const dot = document.createElement('span');
+                    dot.className = 'scroll-dot' + (i === 0 ? ' active' : '');
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        const cardWidth = wrapper.children[0].offsetWidth + getGap(wrapper);
+                        wrapper.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function getGap(el) {
+                const style = window.getComputedStyle(el);
+                const gap = style.gap || '0px';
+                return parseInt(gap) || 0;
+            }
+
+            function updateDots() {
+                if (!dotsContainer) return;
+                const scrollLeft = wrapper.scrollLeft;
+                const cardWidth = wrapper.children[0]?.offsetWidth + getGap(wrapper) || 1;
+                const index = Math.round(scrollLeft / cardWidth);
+                const dots = dotsContainer.querySelectorAll('.scroll-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                if (fade) {
+                    const isAtEnd = wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10;
+                    fade.classList.toggle('visible', !isAtEnd);
+                }
+            }
+
+            wrapper.addEventListener('scroll', function() {
+                updateDots();
+                if (hint && hint.classList.contains('visible')) {
+                    hint.classList.remove('visible');
+                    setTimeout(() => {
+                        hint.style.display = 'none';
+                    }, 500);
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                const isMobile = window.innerWidth < 769;
+                if (!isMobile) {
+                    if (dotsContainer) dotsContainer.classList.remove('visible');
+                    if (fade) fade.classList.remove('visible');
+                    if (hint) {
+                        hint.classList.remove('visible');
+                        hint.style.display = 'none';
+                    }
+                } else {
+                    if (dotsContainer) dotsContainer.classList.add('visible');
+                    if (fade) fade.classList.add('visible');
+                    if (hint) {
+                        hint.style.display = 'block';
+                        setTimeout(() => {
+                            hint.classList.add('visible');
+                        }, 100);
+                    }
+                    updateDots();
+                }
+            });
+
+            setTimeout(() => {
+                const isMobile = window.innerWidth < 769;
+                if (isMobile) {
+                    if (dotsContainer) dotsContainer.classList.add('visible');
+                    if (fade) fade.classList.add('visible');
+                    if (hint) {
+                        hint.style.display = 'block';
+                        setTimeout(() => {
+                            hint.classList.add('visible');
+                        }, 100);
+                    }
+                    updateDots();
+                } else {
+                    if (dotsContainer) dotsContainer.classList.remove('visible');
+                    if (fade) fade.classList.remove('visible');
+                    if (hint) {
+                        hint.classList.remove('visible');
+                        hint.style.display = 'none';
+                    }
+                }
+            }, 300);
+
+            if (hint) {
+                setTimeout(() => {
+                    if (hint.classList.contains('visible')) {
+                        hint.classList.remove('visible');
+                        setTimeout(() => {
+                            hint.style.display = 'none';
+                        }, 500);
+                    }
+                }, 4000);
+            }
+
+            return { updateDots };
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setupHorizontalScroll('heroWrapper', 'heroDots', 'heroHint', 'heroFade');
+            setupHorizontalScroll('stepsWrapper', 'stepsDots', 'stepsHint', 'stepsFade');
+            setupHorizontalScroll('processWrapper', 'processDots', 'processHint', 'processFade');
+            setupHorizontalScroll('vibeWrapper', 'vibeDots', 'vibeHint', 'vibeFade');
+        });
+
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                if (window.innerWidth < 769) {
+                    ['heroWrapper', 'stepsWrapper', 'processWrapper', 'vibeWrapper'].forEach(id => {
+                        const wrapper = document.getElementById(id);
+                        if (wrapper) wrapper.dispatchEvent(new Event('scroll'));
+                    });
+                }
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>
